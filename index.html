@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="root">
+
+    <div is="component-button" type="outlined" id="button1">
+      展开
+    </div>
+    <div is="component-button" type="outlined" id="button2">
+      关闭
+    </div>
+    <div is="component-button" type="outlined" id="button3">
+      自动
+    </div>
+    <div is="component-button" type="outlined" id="button4">
+      修改时间
+    </div>
+
+    <div is="component-accordion" id="component-accordion" style="margin-top: 20px;">
+      <div accordion="top">
+        <div style="padding: 8px;">
+          <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+        </div>
+      </div>
+
+      <div accordion="middle">
+        <div style="padding: 8px;">
+          <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+        </div>
+      </div>
+
+      <div accordion="bottom">
+        <div style="padding: 8px;">
+          <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  data = {
+    text: 'text'
+  }
+</script>
+
+<script src="./index.js"></script>
+<script src="./component-Accordion.js"></script>
+<script src="./component-Button.js"></script>
+<script src="./component-Text.js"></script>
+
+<script>
+  document.getElementById('button1').addEventListener('click', () => {
+    document.getElementById('component-accordion').setAttribute('expand', 'true')
+  })
+
+  document.getElementById('button2').addEventListener('click', () => {
+    document.getElementById('component-accordion').setAttribute('expand', 'false')
+  })
+
+  document.getElementById('button3').addEventListener('click', () => {
+    document.getElementById('component-accordion').removeAttribute('expand')
+  })
+
+  document.getElementById('button4').addEventListener('click', () => {
+    console.log(customElements_.data)
+    customElements_.data.text = Math.random() * 10000
+  })
+</script>
+
+</html>
