@@ -67,5 +67,3 @@ class ComponentAccordion {
 }
 
 ComponentAccordion.prototype.node = HTMLElement.prototype
-
-customElements_.define('component-accordion', ComponentAccordion)

@@ -75,5 +75,3 @@ class ComponentButton {
 }
 
 ComponentButton.prototype.node = HTMLElement.prototype
-
-customElements_.define('component-button', ComponentButton)

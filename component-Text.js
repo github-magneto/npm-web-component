@@ -30,5 +30,3 @@ class ComponentText {
 }
 
 ComponentText.prototype.node = HTMLElement.prototype
-
-customElements_.define('component-text', ComponentText)

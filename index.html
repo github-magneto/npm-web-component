@@ -48,16 +48,27 @@
 
 </body>
 
+<script src="./CustomElementRegistry_.js"></script>
+<script src="./component-Accordion.js"></script>
+<script src="./component-Button.js"></script>
+<script src="./component-Text.js"></script>
+
 <script>
   data = {
     text: 'text'
   }
 </script>
 
-<script src="./index.js"></script>
-<script src="./component-Accordion.js"></script>
-<script src="./component-Button.js"></script>
-<script src="./component-Text.js"></script>
+<script>
+  const customElements_ = new CustomElementRegistry_(document.getElementById('root'), data)
+
+  customElements_.observe()
+  customElements_.proxy()
+
+  customElements_.define('component-accordion', ComponentAccordion)
+  customElements_.define('component-button', ComponentButton)
+  customElements_.define('component-text', ComponentText)
+</script>
 
 <script>
   document.getElementById('button1').addEventListener('click', () => {
