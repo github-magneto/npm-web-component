@@ -48,15 +48,12 @@ class ComponentButton {
     this.node.style.borderRadius = '4px'
     this.node.style.cursor = 'pointer'
     this.node.style.userSelect = 'none'
+    this.node.style.transition = '0.5s all'
 
     this.styleObserve()
 
     this.node.addEventListener('mouseenter', () => this.node.setAttribute('hover', ''))
     this.node.addEventListener('mouseleave', () => this.node.removeAttribute('hover'))
-
-    requestAnimationFrame(() => {
-      this.node.style.transition = '0.5s all'
-    })
   }
 
   disconnectedCallback = () => {

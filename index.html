@@ -10,7 +10,7 @@
 
 <body>
 
-  <div id="root">
+  <div id="root" style="display: none;">
 
     <div is="component-button" type="outlined" id="button1">
       展开
@@ -87,6 +87,10 @@
     console.log(customElements_.data)
     customElements_.data.text = Math.random() * 10000
   })
+</script>
+
+<script>
+  document.getElementById('root').style.display = 'block'
 </script>
 
 </html>

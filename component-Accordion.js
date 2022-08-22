@@ -42,9 +42,9 @@ class ComponentAccordion {
 
     this.top.style.borderBottom = '1px black solid'
 
-    this.middle.style.transition = '0.5s all'
     this.middle.style.overflow = 'hidden'
     this.middle.style.height = '0px'
+    this.middle.style.transition = '0.5s all'
 
     this.bottom.style.borderTop = '1px black solid'
 

@@ -16,7 +16,7 @@ class CustomElementRegistry_ {
             if (this.renderedComponent.some(component => component.node === node)) return
 
             this.definedComponent.forEach(component => {
-              if (node.getAttribute && node.getAttribute('is') === component.is) this.render(node, component.component)
+              if (node.getAttribute && node.getAttribute('is') === component.is) this.render(node, component)
             })
           })
         }
@@ -84,19 +84,15 @@ class CustomElementRegistry_ {
   define(is, component, options) {
     this.definedComponent.push({ is, component, options })
 
-    var nodes
-
-    nodes = document.querySelectorAll(`[is=${is}]`)
-
-    nodes.forEach(node => {
-      this.render(node, component)
+    document.querySelectorAll(`[is=${is}]`).forEach(node => {
+      this.render(node, { is, component, options })
     })
   }
 
   render(node, component) {
     node.setAttribute('constructored', '')
 
-    const componentInstance = new component(node, this.data)
+    const componentInstance = new component.component(node, this.data)
 
     this.renderedComponent.push(componentInstance)
 
