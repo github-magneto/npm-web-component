@@ -18,14 +18,15 @@ class ComponentAccordion {
 
   expandObserve = () => {
     const expand = this.node.getAttribute('expand')
-    if (expand !== null) {
+
+    if (expand !== 'auto') {
       this.node.removeEventListener('mouseenter', this.onMouseEnter)
       this.node.removeEventListener('mouseleave', this.onMouseLeave)
 
-      if (expand === 'true') this.onMouseEnter()
-      if (expand === 'false') this.onMouseLeave()
+      if (expand === 'on') this.onMouseEnter()
+      if (expand === 'off') this.onMouseLeave()
     }
-    if (expand === null) {
+    if (expand === 'auto') {
       this.node.addEventListener('mouseenter', this.onMouseEnter)
       this.node.addEventListener('mouseleave', this.onMouseLeave)
     }

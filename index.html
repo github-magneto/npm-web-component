@@ -12,50 +12,65 @@
 
   <div id="root" style="display: none;">
 
-    <div is="component-button" type="outlined" id="button1">
-      展开
-    </div>
-    <div is="component-button" type="outlined" id="button2">
-      关闭
-    </div>
-    <div is="component-button" type="outlined" id="button3">
-      自动
-    </div>
-    <div is="component-button" type="outlined" id="button4">
-      修改时间
-    </div>
-
-    <div is="component-accordion" id="component-accordion" style="margin-top: 20px;">
-      <div accordion="top">
-        <div style="padding: 8px;">
-          <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
-        </div>
+    <div>
+      <div is="component-button" type="outlined"
+        onclick="document.querySelector('#component-accordion').setAttribute('expand', 'on')">
+        展开
+      </div>
+      <div is="component-button" type="outlined"
+        onclick="document.querySelector('#component-accordion').setAttribute('expand', 'off')">
+        关闭
+      </div>
+      <div is="component-button" type="outlined"
+        onclick="document.querySelector('#component-accordion').setAttribute('expand', 'auto')">
+        自动
       </div>
 
-      <div accordion="middle">
-        <div style="padding: 8px;">
-          <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+      <div is="component-accordion" id="component-accordion" style="margin-top: 20px;" expand="auto">
+        <div accordion="top">
+          <div style="padding: 8px;">
+            <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+          </div>
         </div>
-      </div>
 
-      <div accordion="bottom">
-        <div style="padding: 8px;">
-          <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+        <div accordion="middle">
+          <div style="padding: 8px;">
+            <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+          </div>
+        </div>
+
+        <div accordion="bottom">
+          <div style="padding: 8px;">
+            <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div style="margin-top: 40px;">
+      <div is="component-button" type="outlined" onclick="addList()">
+        添加
+      </div>
+
+      <div is="component-for" id="component-for" style="margin-top: 20px;" for="[1, 2, 3]">
+        <div>123</div>
+      </div>
+    </div>
+
+
   </div>
 
 </body>
 
 <script src="./CustomElementRegistry_.js"></script>
+<script src="./component-For.js"></script>
 <script src="./component-Accordion.js"></script>
 <script src="./component-Button.js"></script>
 <script src="./component-Text.js"></script>
 
 <script>
   data = {
-    text: 'text'
+    expand: 'off'
   }
 </script>
 
@@ -65,28 +80,25 @@
   customElements_.observe()
   customElements_.proxy()
 
+  customElements_.define('component-for', ComponentFor)
+
   customElements_.define('component-accordion', ComponentAccordion)
   customElements_.define('component-button', ComponentButton)
   customElements_.define('component-text', ComponentText)
 </script>
 
 <script>
-  document.getElementById('button1').addEventListener('click', () => {
-    document.getElementById('component-accordion').setAttribute('expand', 'true')
-  })
+  const addList = () => {
+    const for_ = JSON.parse(document.querySelector('#component-for').getAttribute('for'))
 
-  document.getElementById('button2').addEventListener('click', () => {
-    document.getElementById('component-accordion').setAttribute('expand', 'false')
-  })
+    console.log(for_)
 
-  document.getElementById('button3').addEventListener('click', () => {
-    document.getElementById('component-accordion').removeAttribute('expand')
-  })
+    for_.push({ time: new Date().getTime })
 
-  document.getElementById('button4').addEventListener('click', () => {
-    console.log(customElements_.data)
-    customElements_.data.text = Math.random() * 10000
-  })
+    console.log(for_)
+
+    document.querySelector('#component-for').setAttribute('for', JSON.stringify(for_))
+  }
 </script>
 
 <script>
