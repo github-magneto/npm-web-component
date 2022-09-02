@@ -34,8 +34,28 @@
         </div>
 
         <div accordion="middle">
-          <div style="padding: 8px;">
+          <div style="padding: 8px; overflow-y: auto; height: 100%;">
             <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+
+            <div style="margin-top: 40px;">
+              <div is="component-button" type="outlined" onclick="setFor()">
+                添加
+              </div>
+
+              <div is="component-for" id="component-for" style="margin-top: 20px;" for="[1, 2, 3]" for-name="text">
+                <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+              </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+              <div is="component-button" type="outlined" onclick="setIf()">
+                显示
+              </div>
+
+              <div is="component-if" id="component-if" style="margin-top: 20px;" if>
+                <div is="component-text" text='间の禁欲の果てに彼女の亲友と仆が浮気'></div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -47,26 +67,16 @@
       </div>
     </div>
 
-    <div style="margin-top: 40px;">
-      <div is="component-button" type="outlined" onclick="addList()">
-        添加
-      </div>
-
-      <div is="component-for" id="component-for" style="margin-top: 20px;" for="[1, 2, 3]">
-        <div>123</div>
-      </div>
-    </div>
-
-
   </div>
 
 </body>
 
 <script src="./CustomElementRegistry_.js"></script>
-<script src="./component-For.js"></script>
 <script src="./component-Accordion.js"></script>
 <script src="./component-Button.js"></script>
 <script src="./component-Text.js"></script>
+<script src="./component-For.js"></script>
+<script src="./component-If.js"></script>
 
 <script>
   data = {
@@ -81,6 +91,7 @@
   customElements_.proxy()
 
   customElements_.define('component-for', ComponentFor)
+  customElements_.define('component-if', ComponentIf)
 
   customElements_.define('component-accordion', ComponentAccordion)
   customElements_.define('component-button', ComponentButton)
@@ -88,16 +99,22 @@
 </script>
 
 <script>
-  const addList = () => {
+  const setFor = () => {
     const for_ = JSON.parse(document.querySelector('#component-for').getAttribute('for'))
 
-    console.log(for_)
-
-    for_.push({ time: new Date().getTime })
-
-    console.log(for_)
+    for_.push(for_.length)
 
     document.querySelector('#component-for').setAttribute('for', JSON.stringify(for_))
+  }
+
+  const setIf = () => {
+    const if_ = document.querySelector('#component-if').getAttribute('if')
+
+    if (if_ !== null) {
+      document.querySelector('#component-if').removeAttribute('if')
+    } else {
+      document.querySelector('#component-if').setAttribute('if', '')
+    }
   }
 </script>
 

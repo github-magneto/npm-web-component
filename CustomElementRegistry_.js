@@ -25,7 +25,7 @@ class CustomElementRegistry_ {
           mutation.removedNodes.forEach(node => {
             this.renderedComponent.forEach(component => {
               if (component.node === node) {
-                component.disconnectedCallback()
+                if (component.disconnectedCallback) component.disconnectedCallback()
                 this.renderedComponent = this.renderedComponent.filter(component_ => component_ !== component)
               }
             })
@@ -35,7 +35,9 @@ class CustomElementRegistry_ {
         if (mutation.attributeName) {
           this.renderedComponent.forEach(component => {
             if (component.node === mutation.target) {
-              if (!component.observedAttributes || component.observedAttributes.includes(mutation.attributeName)) component.attributeChangedCallback(mutation.attributeName)
+              if (!component.observedAttributes || component.observedAttributes.includes(mutation.attributeName)) {
+                if (component.attributeChangedCallback) component.attributeChangedCallback(mutation.attributeName)
+              }
             }
           })
         }
@@ -90,12 +92,12 @@ class CustomElementRegistry_ {
   }
 
   render(node, component) {
-    node.setAttribute('constructored', '')
-
     const componentInstance = new component.component(node, this.data)
+
+    node.setAttribute('constructored', '')
 
     this.renderedComponent.push(componentInstance)
 
-    componentInstance.connectedCallback()
+    if (componentInstance.connectedCallback) componentInstance.connectedCallback()
   }
 }
